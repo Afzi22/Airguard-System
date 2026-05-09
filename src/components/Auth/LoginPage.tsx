@@ -26,9 +26,9 @@ export function LoginPage({ onLogin, onCancel }: LoginPageProps) {
   };
 
   return (
-    <div className="bg-slate-900 min-h-screen flex items-center justify-center px-4">
+    <div className="bg-slate-900 min-h-screen flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-sm">
-        <GlassCard className="p-8">
+        <GlassCard className="p-6 sm:p-8">
           {/* Logo & System Name */}
           <div className="text-center mb-8">
             <h1

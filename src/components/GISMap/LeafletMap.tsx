@@ -208,7 +208,7 @@ export function LeafletMap({
   return (
     <div
       ref={containerRef}
-      className="w-full h-full min-h-[400px] rounded-xl overflow-hidden"
+      className="w-full h-full min-h-[280px] sm:min-h-[360px] lg:min-h-[400px] rounded-xl overflow-hidden"
       aria-label="Interactive GIS map"
       role="application"
     />

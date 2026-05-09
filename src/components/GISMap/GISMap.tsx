@@ -53,7 +53,7 @@ export function GISMap({
   }
 
   return (
-    <div className="relative w-full h-full min-h-[400px]">
+    <div className="relative w-full h-full min-h-[280px] sm:min-h-[360px] lg:min-h-[400px]">
       {/* Real Leaflet map */}
       <LeafletMap
         nodes={nodes}
@@ -65,7 +65,7 @@ export function GISMap({
       />
 
       {/* Heatmap toggle — floats over map */}
-      <div className="absolute top-4 left-4 z-[1000] bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg px-3 py-2 shadow-lg">
+      <div className="absolute top-3 left-3 z-[1000] bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg px-2.5 py-1.5 shadow-lg">
         <HeatmapToggle
           isActive={isHeatmapActive}
           onToggle={() => setIsHeatmapActive((prev) => !prev)}
@@ -73,7 +73,7 @@ export function GISMap({
       </div>
 
       {/* Map controls — floats over map */}
-      <div className="absolute top-4 right-4 z-[1000]">
+      <div className="absolute top-3 right-3 z-[1000]">
         <MapControls
           onZoomIn={handleZoomIn}
           onZoomOut={handleZoomOut}

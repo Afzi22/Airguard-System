@@ -24,7 +24,7 @@ export function NodeCard({ node, isSelected, onClick }: NodeCardProps) {
       aria-label={`Node ${node.id}: PM2.5 ${node.pm25} µg/m³, status ${node.status}`}
       aria-pressed={isSelected}
       className={`
-        flex flex-col gap-1 px-4 py-3 rounded-xl border transition-all duration-200 text-left shrink-0
+        flex flex-col gap-1 px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition-all duration-200 text-left w-full sm:w-auto sm:shrink-0
         bg-slate-800/60 backdrop-blur-sm
         ${isSelected
           ? `${colors.border} shadow-lg ring-1 ring-current`
