@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Leaflet popup dark theme overrides ─────────────────────────────────── */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.airguard-popup .leaflet-popup-content-wrapper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Leaflet attribution dark style */
+.leaflet-control-attribution {
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: #64748b !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #34d399 !important;
+}
+
+/* Fix Leaflet z-index conflicts with our sticky navbar */
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 400 !important;
+}
