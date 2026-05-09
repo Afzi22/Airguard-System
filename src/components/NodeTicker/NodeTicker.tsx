@@ -10,7 +10,7 @@ interface NodeTickerProps {
 export function NodeTicker({ nodes, selectedNodeId, onNodeSelect }: NodeTickerProps) {
   return (
     <div
-      className="flex flex-row gap-3 overflow-x-auto py-2 px-1 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent"
+      className="grid grid-cols-2 sm:flex sm:flex-row gap-2 sm:gap-3 sm:overflow-x-auto py-2 px-1 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent"
       role="list"
       aria-label="IoT node status list"
     >
