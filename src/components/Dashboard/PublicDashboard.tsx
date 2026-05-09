@@ -12,10 +12,10 @@ import { fetchPublicAdvices } from '../../api/policyService';
 import type { IoTNode, ForecastDataPoint, PublicHealthAdvice } from '../../types';
 
 interface PublicDashboardProps {
-  onLogout: () => void;
+  onGoToAdminLogin: () => void;
 }
 
-export function PublicDashboard({ onLogout }: PublicDashboardProps) {
+export function PublicDashboard({ onGoToAdminLogin }: PublicDashboardProps) {
   const [activeCity, setActiveCity] = useState<string>(CITIES[0].id);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
@@ -104,7 +104,7 @@ export function PublicDashboard({ onLogout }: PublicDashboardProps) {
       <PublicNavbar
         activeCity={activeCity}
         onCityChange={handleCityChange}
-        onLogout={onLogout}
+        onGoToAdminLogin={onGoToAdminLogin}
       />
       <MainLayout
         leftColumn={leftColumn}

@@ -13,7 +13,8 @@ interface NavbarProps {
 export function Navbar({ activeCity, onCityChange, onExportReport, onLogout }: NavbarProps) {
   return (
     <nav
-      className="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 px-6 py-3 flex items-center justify-between gap-4 z-40 sticky top-0"
+      className="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 px-6 py-3 flex items-center justify-between gap-4 sticky top-0"
+      style={{ zIndex: 1100 }}
       aria-label="AirGuard navigation bar"
     >
       {/* Logo */}

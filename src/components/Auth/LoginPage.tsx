@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { UserRole } from '../../types';
 import { validateCredentials } from '../../utils/authUtils';
 import { GlassCard } from '../shared/GlassCard';
+import { ArrowLeft } from 'lucide-react';
 
 interface LoginPageProps {
   onLogin: (role: UserRole, username: string) => void;
+  onCancel?: () => void;
 }
 
-export function LoginPage({ onLogin }: LoginPageProps) {
+export function LoginPage({ onLogin, onCancel }: LoginPageProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +37,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             >
               Air<span className="text-emerald-400">Guard</span> System
             </h1>
-            <p className="text-slate-400 text-sm mt-2">Sistem Pemantauan Kualitas Udara</p>
+            <p className="text-slate-400 text-sm mt-2">Login Admin</p>
           </div>
 
           {/* Login Form */}
@@ -101,8 +103,20 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
           {/* Demo credentials hint */}
           <p className="text-center text-xs text-slate-500 mt-6">
-            Demo: admin / admin123 atau user / user123
+            Demo: admin / admin123
           </p>
+
+          {/* Back to public view */}
+          {onCancel && (
+            <button
+              onClick={onCancel}
+              className="mt-4 w-full flex items-center justify-center gap-2 text-slate-400 hover:text-white text-sm transition-colors"
+              aria-label="Kembali ke tampilan publik"
+            >
+              <ArrowLeft size={14} />
+              Kembali ke tampilan publik
+            </button>
+          )}
         </GlassCard>
       </div>
     </div>

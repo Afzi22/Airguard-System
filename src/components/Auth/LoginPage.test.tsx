@@ -6,16 +6,10 @@ describe('LoginPage', () => {
   it('renders the login form with all required elements', () => {
     render(<LoginPage onLogin={vi.fn()} />)
 
-    // Username input
     expect(screen.getByLabelText('Username')).toBeInTheDocument()
-    // Password input
     expect(screen.getByLabelText('Password')).toBeInTheDocument()
-    // Submit button
     expect(screen.getByRole('button', { name: 'Masuk' })).toBeInTheDocument()
-    // Demo credentials hint
-    expect(
-      screen.getByText('Demo: admin / admin123 atau user / user123')
-    ).toBeInTheDocument()
+    expect(screen.getByText('Demo: admin / admin123')).toBeInTheDocument()
   })
 
   it('calls onLogin with ("admin", "admin") for valid admin credentials', () => {
@@ -62,17 +56,21 @@ describe('LoginPage', () => {
     })
     fireEvent.click(screen.getByRole('button', { name: 'Masuk' }))
 
-    expect(
-      screen.getByRole('alert')
-    ).toHaveTextContent('Username atau password salah. Silakan coba lagi.')
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Username atau password salah. Silakan coba lagi.'
+    )
     expect(onLogin).not.toHaveBeenCalled()
   })
 
   it('displays the demo credentials hint', () => {
     render(<LoginPage onLogin={vi.fn()} />)
+    expect(screen.getByText('Demo: admin / admin123')).toBeInTheDocument()
+  })
 
-    expect(
-      screen.getByText('Demo: admin / admin123 atau user / user123')
-    ).toBeInTheDocument()
+  it('calls onCancel when back button is clicked', () => {
+    const onCancel = vi.fn()
+    render(<LoginPage onLogin={vi.fn()} onCancel={onCancel} />)
+    fireEvent.click(screen.getByRole('button', { name: /kembali ke tampilan publik/i }))
+    expect(onCancel).toHaveBeenCalledOnce()
   })
 })

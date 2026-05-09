@@ -32,19 +32,25 @@ vi.mock('recharts', () => ({
 }))
 
 describe('App routing', () => {
-  it('renders LoginPage on initial load', () => {
+  it('renders PublicDashboard on initial load (no login required)', () => {
     render(<App />)
+    // PublicDashboard shows health advice panel title immediately
+    expect(screen.getByText('Saran Kesehatan Hari Ini')).toBeInTheDocument()
+  })
 
-    // Login button and demo hint confirm LoginPage is shown
+  it('renders Admin Login page when Admin button is clicked', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /admin login/i }))
+    // Login form should appear
     expect(screen.getByRole('button', { name: 'Masuk' })).toBeInTheDocument()
-    expect(
-      screen.getByText('Demo: admin / admin123 atau user / user123')
-    ).toBeInTheDocument()
   })
 
   it('renders Admin Dashboard after admin login', () => {
     render(<App />)
 
+    // Go to admin login
+    fireEvent.click(screen.getByRole('button', { name: /admin login/i }))
+
     fireEvent.change(screen.getByLabelText('Username'), {
       target: { value: 'admin' },
     })
@@ -53,31 +59,17 @@ describe('App routing', () => {
     })
     fireEvent.click(screen.getByRole('button', { name: 'Masuk' }))
 
-    // Admin Dashboard (Command Center) shows the Export Report button
+    // Admin Dashboard shows the Export Report button
     expect(
       screen.getByRole('button', { name: /export report/i })
     ).toBeInTheDocument()
   })
 
-  it('renders PublicDashboard after public login', () => {
+  it('returns to PublicDashboard after logout from Admin Dashboard', () => {
     render(<App />)
 
-    fireEvent.change(screen.getByLabelText('Username'), {
-      target: { value: 'user' },
-    })
-    fireEvent.change(screen.getByLabelText('Password'), {
-      target: { value: 'user123' },
-    })
-    fireEvent.click(screen.getByRole('button', { name: 'Masuk' }))
-
-    // PublicDashboard shows the health advice panel title
-    expect(screen.getByText('Saran Kesehatan Hari Ini')).toBeInTheDocument()
-  })
-
-  it('returns to LoginPage after logout from Admin Dashboard', () => {
-    render(<App />)
-
-    // Log in as admin
+    // Go to admin login and log in
+    fireEvent.click(screen.getByRole('button', { name: /admin login/i }))
     fireEvent.change(screen.getByLabelText('Username'), {
       target: { value: 'admin' },
     })
@@ -86,13 +78,13 @@ describe('App routing', () => {
     })
     fireEvent.click(screen.getByRole('button', { name: 'Masuk' }))
 
-    // Confirm we're on the Dashboard, then log out
+    // Confirm we're on the Admin Dashboard, then log out
     expect(
       screen.getByRole('button', { name: /export report/i })
     ).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /logout/i }))
 
-    // LoginPage should be visible again
-    expect(screen.getByRole('button', { name: 'Masuk' })).toBeInTheDocument()
+    // Should return to PublicDashboard
+    expect(screen.getByText('Saran Kesehatan Hari Ini')).toBeInTheDocument()
   })
 })

@@ -1,17 +1,18 @@
-import { LogOut } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { CitySelector } from './CitySelector';
 import { LiveClock } from './LiveClock';
 
 interface PublicNavbarProps {
   activeCity: string;
   onCityChange: (cityId: string) => void;
-  onLogout: () => void;
+  onGoToAdminLogin: () => void;
 }
 
-export function PublicNavbar({ activeCity, onCityChange, onLogout }: PublicNavbarProps) {
+export function PublicNavbar({ activeCity, onCityChange, onGoToAdminLogin }: PublicNavbarProps) {
   return (
     <nav
-      className="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 px-6 py-3 flex items-center justify-between gap-4 z-40 sticky top-0"
+      className="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 px-6 py-3 flex items-center justify-between gap-4 sticky top-0"
+      style={{ zIndex: 1100 }}
       aria-label="AirGuard public navigation bar"
     >
       {/* Logo */}
@@ -29,16 +30,16 @@ export function PublicNavbar({ activeCity, onCityChange, onLogout }: PublicNavba
         <CitySelector activeCity={activeCity} onCityChange={onCityChange} />
       </div>
 
-      {/* Right: Clock and Logout */}
+      {/* Right: Clock and Admin Login */}
       <div className="flex items-center gap-5 shrink-0">
         <LiveClock />
         <button
-          onClick={onLogout}
-          aria-label="Logout"
-          className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+          onClick={onGoToAdminLogin}
+          aria-label="Admin login"
+          className="flex items-center gap-2 bg-slate-700/60 hover:bg-slate-700 border border-slate-600/50 text-slate-300 hover:text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
         >
-          <LogOut size={14} />
-          Logout
+          <Shield size={14} />
+          Admin
         </button>
       </div>
     </nav>

@@ -42,7 +42,8 @@ export function CitySelector({ activeCity, onCityChange }: CitySelectorProps) {
         <div
           role="listbox"
           aria-label="City list"
-          className="absolute top-full mt-1 left-0 w-full min-w-[220px] bg-slate-800 border border-slate-700/50 rounded-xl shadow-xl z-50 overflow-hidden"
+          className="absolute top-full mt-1 left-0 w-full min-w-[220px] bg-slate-800 border border-slate-700/50 rounded-xl shadow-xl overflow-hidden"
+          style={{ zIndex: 1200 }}
         >
           {/* Search input */}
           <div className="flex items-center gap-2 px-3 py-2 border-b border-slate-700/50">

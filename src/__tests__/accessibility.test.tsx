@@ -129,7 +129,7 @@ describe('Accessibility Tests (WCAG AA)', () => {
 
   it('PublicDashboard has no accessibility violations', async () => {
     const { container } = render(
-      <PublicDashboard onLogout={vi.fn()} />
+      <PublicDashboard onGoToAdminLogin={vi.fn()} />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
